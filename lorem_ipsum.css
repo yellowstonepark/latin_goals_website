@@ -30,7 +30,6 @@ body {
 .header h1 a {
     color: white;
     text-decoration: none;
-
 }
 
 nav {
@@ -60,30 +59,34 @@ nav ul li a:hover {
     color: #00A8E8;
 }
 
-/* Hero section styling */
-.hero {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: #4a90e2;
-    color: white;
-    padding: 100px 20px;
-    text-align: center;
+/* Content styling */
+.content {
+    width: 80%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    position: relative;
 }
 
-.title {
-    font-family: 'Playfair Display', serif;
-    font-size: 5em;
+.paragraph {
+    font-size: 1.2em;
+    line-height: 1.6em;
+    color: #666;
+    padding: 20px;
+}
+
+.footer-message {
+    text-align: center;
+    margin-top: 300px; /* Adjust to position properly */
+}
+
+.footer-message p {
+    font-size: 1.5em;
     margin: 20px 0;
 }
 
-.subtitle {
-    font-size: 2em;
-    margin: 10px 0 20px 0;
-}
-
-/* Button styling */
 .goals_button {
     background-color: #ff5a5f;
     color: white;
@@ -100,39 +103,4 @@ nav ul li a:hover {
 
 .goals_button:hover {
     background-color: #e04a4f;
-}
-
-/* Section styling */
-.section {
-    width: 80%;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.txt h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5em;
-    margin-bottom: 20px;
-}
-
-.txt p {
-    font-size: 1.2em;
-    line-height: 1.6em;
-    color: #666;
-}
-
-/* Footer styling */
-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #2e3d49;
-    color: white;
-    padding: 10px 0;
-    position: relative;
-    bottom: 0;
-    width: 100%;
 }

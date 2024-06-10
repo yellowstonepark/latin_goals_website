@@ -60,29 +60,6 @@ nav ul li a:hover {
     color: #00A8E8;
 }
 
-/* Hero section styling */
-.hero {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: #4a90e2;
-    color: white;
-    padding: 100px 20px;
-    text-align: center;
-}
-
-.title {
-    font-family: 'Playfair Display', serif;
-    font-size: 5em;
-    margin: 20px 0;
-}
-
-.subtitle {
-    font-size: 2em;
-    margin: 10px 0 20px 0;
-}
-
 /* Button styling */
 .goals_button {
     background-color: #ff5a5f;
@@ -102,26 +79,45 @@ nav ul li a:hover {
     background-color: #e04a4f;
 }
 
-/* Section styling */
-.section {
-    width: 80%;
-    margin: 50px auto;
-    padding: 20px;
+/* Animals container styling */
+.animals-container {
     background-color: #ffffff;
+    padding: 20px 40px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 80%;
+    margin: 50px auto;
 }
 
-.txt h2 {
+.animals-container h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 2.5em;
     margin-bottom: 20px;
 }
 
-.txt p {
+.animal {
+    margin-bottom: 20px;
+}
+
+.animal img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+}
+
+.animal p {
     font-size: 1.2em;
     line-height: 1.6em;
     color: #666;
+}
+
+.bottom_b {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
 
 /* Footer styling */
