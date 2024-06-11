@@ -2,5 +2,9 @@
     "otzar": {
         "password": "password",
         "goals": []
+    },
+    "ethan": {
+        "password": "password",
+        "goals": []
     }
 }
