@@ -9,5 +9,13 @@
     "ethan": {
         "password": "password",
         "goals": []
+    },
+    "joe": {
+        "password": "chicken",
+        "goals": [
+            "getting a 100 on this ridiculous latin culture exam",
+            "make it so that I don't have to sign in with every single button that I click",
+            "slaying life"
+        ]
     }
 }

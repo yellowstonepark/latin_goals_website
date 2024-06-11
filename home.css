@@ -35,6 +35,8 @@ body {
 
 nav {
     display: flex;
+    position: sticky;
+    position: -webkit-sticky;
     align-items: center;
 }
 
@@ -80,6 +82,11 @@ nav ul li a:hover {
 
 .subtitle {
     font-size: 2em;
+    margin: 10px 0 20px 0;
+}
+
+.subtitle2 {
+    font-size: 1.2em;
     margin: 10px 0 20px 0;
 }
 
