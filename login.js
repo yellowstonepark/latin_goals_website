@@ -3,6 +3,9 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
+    console.log(username);
+    console.log(password);
+
     fetch('login.php', {
         method: 'POST',
         headers: {
@@ -15,6 +18,8 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         if (data.status === 'success') {
             alert('Login successful!');
             window.location.href = 'goals.html';
+            // store username in local storage
+            localStorage.setItem('username', username);
         } else {
             alert('Invalid username or password!');
         }
