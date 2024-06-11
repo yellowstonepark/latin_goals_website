@@ -4,26 +4,66 @@ document.addEventListener('DOMContentLoaded', function() {
     const newGoalInput = document.getElementById('newGoal');
     const username = sessionStorage.getItem('username'); // Assuming username is stored in session storage
 
-    // Load goals from local storage
-    let users = JSON.parse(localStorage.getItem('users')) || {};
-    let userGoals = users[username]?.goals || [];
-
-    function saveGoals() {
-        users[username].goals = userGoals;
-        localStorage.setItem('users', JSON.stringify(users));
+    function fetchGoals() {
+        fetch('goals.php?action=get&username=' + encodeURIComponent(username))
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    renderGoals(data.goals);
+                } else {
+                    console.error('Failed to fetch goals:', data.message);
+                }
+            })
+            .catch(error => console.error('Error fetching goals:', error));
     }
 
-    function renderGoals() {
+    function saveGoal(goal) {
+        fetch('goals.php?action=add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username: username, goal: goal })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                fetchGoals();
+            } else {
+                console.error('Failed to save goal:', data.message);
+            }
+        })
+        .catch(error => console.error('Error saving goal:', error));
+    }
+
+    function deleteGoal(index) {
+        fetch('goals.php?action=delete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username: username, index: index })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                fetchGoals();
+            } else {
+                console.error('Failed to delete goal:', data.message);
+            }
+        })
+        .catch(error => console.error('Error deleting goal:', error));
+    }
+
+    function renderGoals(goals) {
         goalsList.innerHTML = '';
-        userGoals.forEach((goal, index) => {
+        goals.forEach((goal, index) => {
             const li = document.createElement('li');
             li.textContent = goal;
             const deleteButton = document.createElement('button');
             deleteButton.textContent = 'Delete';
             deleteButton.addEventListener('click', () => {
-                userGoals.splice(index, 1);
-                saveGoals();
-                renderGoals();
+                deleteGoal(index);
             });
             li.appendChild(deleteButton);
             goalsList.appendChild(li);
@@ -34,12 +74,10 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
         const newGoal = newGoalInput.value.trim();
         if (newGoal) {
-            userGoals.push(newGoal);
-            saveGoals();
-            renderGoals();
+            saveGoal(newGoal);
             newGoalInput.value = '';
         }
     });
 
-    renderGoals();
+    fetchGoals();
 });
