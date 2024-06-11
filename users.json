@@ -1,7 +1,10 @@
 {
     "otzar": {
         "password": "password",
-        "goals": []
+        "goals": [
+            "draem",
+            "sffsd"
+        ]
     },
     "ethan": {
         "password": "password",

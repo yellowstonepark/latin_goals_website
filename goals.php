@@ -1,8 +1,19 @@
 <?php
 header('Content-Type: application/json');
 
-$action = $_GET['action'] ?? $_POST['action'] ?? null;
-$username = $_GET['username'] ?? $_POST['username'] ?? null;
+$method = $_SERVER['REQUEST_METHOD'];
+
+if ($method === 'GET') {
+    $action = $_GET['action'] ?? null;
+    $username = $_GET['username'] ?? null;
+} elseif ($method === 'POST') {
+    $input = json_decode(file_get_contents('php://input'), true);
+    $action = $input['action'] ?? null;
+    $username = $input['username'] ?? null;
+} else {
+    $action = null;
+    $username = null;
+}
 
 if (!$action || !$username) {
     echo json_encode(['status' => 'error', 'message' => 'Invalid request']);
@@ -28,7 +39,6 @@ if (!isset($users[$username])) {
 if ($action === 'get') {
     echo json_encode(['status' => 'success', 'goals' => $users[$username]['goals'] ?? []]);
 } elseif ($action === 'add') {
-    $input = json_decode(file_get_contents('php://input'), true);
     $goal = $input['goal'] ?? null;
     if ($goal) {
         $users[$username]['goals'][] = $goal;
@@ -38,7 +48,6 @@ if ($action === 'get') {
         echo json_encode(['status' => 'error', 'message' => 'Invalid goal']);
     }
 } elseif ($action === 'delete') {
-    $input = json_decode(file_get_contents('php://input'), true);
     $index = $input['index'] ?? null;
     if (is_numeric($index) && isset($users[$username]['goals'][$index])) {
         array_splice($users[$username]['goals'], $index, 1);

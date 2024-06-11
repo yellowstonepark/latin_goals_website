@@ -2,7 +2,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const goalsList = document.getElementById('goalsList');
     const goalForm = document.getElementById('goalForm');
     const newGoalInput = document.getElementById('newGoal');
-    const username = sessionStorage.getItem('username'); // Assuming username is stored in session storage
+    const username = localStorage.getItem('username'); // Retrieve username from localStorage
+
+    if (!username) {
+        alert('You must be logged in to view and manage your goals.');
+        window.location.href = 'login.html';
+        return;
+    }
 
     function fetchGoals() {
         fetch('goals.php?action=get&username=' + encodeURIComponent(username))
@@ -23,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username: username, goal: goal })
+            body: JSON.stringify({ action: 'add', username: username, goal: goal })
         })
         .then(response => response.json())
         .then(data => {
@@ -42,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username: username, index: index })
+            body: JSON.stringify({ action: 'delete', username: username, index: index })
         })
         .then(response => response.json())
         .then(data => {
