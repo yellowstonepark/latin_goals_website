@@ -1,5 +1,11 @@
 <?php
-// login.php
+header('Content-Type: application/json');
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    echo json_encode(['status' => 'error', 'message' => 'Method Not Allowed']);
+    exit();
+}
 
 // Get the JSON input
 $data = json_decode(file_get_contents('php://input'), true);
